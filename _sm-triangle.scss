@@ -1,4 +1,5 @@
 @mixin triangle($direction, $color, $height, $width: $height) {
+
 	@if $direction == "left" {
 		border-bottom: ($height * 1px) solid transparent;
 		border-right: ($width * 1px) solid $color;
@@ -19,6 +20,7 @@
 		border-left: ($width * 1px) solid transparent;
 		border-top: ($height * 1px) solid $color;
 	}
+
 	content: "";
 	height: 0;
 	position: absolute;
