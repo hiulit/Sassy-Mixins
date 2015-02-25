@@ -1,0 +1,12 @@
+@mixin max-ellipsis($max-width) {
+
+	@if unitless($max-width) == true {
+		@include prem(max-width, $max-width);
+	}
+	@else {
+		max-width: $max-width;
+	}
+
+	@include ellipsis;
+	word-wrap: normal;
+}
