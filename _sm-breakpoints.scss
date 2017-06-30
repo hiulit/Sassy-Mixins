@@ -1,0 +1,41 @@
+$breakpoints: (
+    "xs": 0,
+    "sm": 568px,
+    "md": 768px,
+    "lg": 1004px
+);
+
+@mixin breakpoint($values...) {
+    $length: length($values);
+
+    @if $length == 1 {
+        @if nth($values, 1) == "landscape" or nth($values, 1) == "portrait" {
+            @media screen and (orientation: nth($values, 1)) {
+                @content;
+            }
+        } @else {
+            @media screen and (min-width: map-get($breakpoints, nth($values, 1))) {
+                @content;
+            }
+        }
+    }
+
+    @if $length == 2 {
+        @if nth($values, 2) == "landscape" or nth($values, 2) == "portrait" {
+            @media screen and (min-width: map-get($breakpoints, nth($values, 1))) and (orientation: nth($values, 2)) {
+                @content;
+            }
+        }
+        @else {
+            @media screen and (min-width: map-get($breakpoints, nth($values, 1))) and (max-width: map-get($breakpoints, nth($values, 2))) {
+                @content;
+            }
+        }
+    }
+
+    @if $length == 3 {
+        @media screen and (min-width: map-get($breakpoints, nth($values, 1))) and (max-width: map-get($breakpoints, nth($values, 2))) and (orientation: nth($values, 3)) {
+            @content;
+        }
+    }
+}
