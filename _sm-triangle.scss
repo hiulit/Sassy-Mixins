@@ -1,28 +1,40 @@
-@mixin triangle($direction, $color, $height, $width: $height) {
+@mixin triangle($direction, $color, $sizes, $darken: false) {
+    $length: length($sizes);
+    $height: null;
+    $width: null;
 
-	@if $direction == "left" {
-		border-bottom: ($height * 1px) solid transparent;
-		border-right: ($width * 1px) solid $color;
-		border-top: ($height * 1px) solid transparent;
-	}
-	@else if $direction == "right" {
-		border-bottom: ($height * 1px) solid transparent;
-		border-left : ($width * 1px) solid $color;
-		border-top: ($height * 1px) solid transparent;
-	}
-	@else if $direction == "up" {
-		border-bottom: ($height * 1px) solid $color;
-		border-left: ($width * 1px) solid transparent;
-		border-right: ($width * 1px) solid transparent;
-	}
-	@else if $direction == "down" {
-		border-right: ($width * 1px) solid transparent;
-		border-left: ($width * 1px) solid transparent;
-		border-top: ($height * 1px) solid $color;
-	}
+    @if $length == 1 {
+        $height: $sizes;
+        $width: $sizes;
+    } @else {
+        $height: nth($length, 2);
+        $width: nth($length, 1);
+    }
 
-	content: "";
-	height: 0;
-	position: absolute;
-	width: 0;
+    @if $darken == true {
+        $color: darken($color, 10);
+    }
+
+    @if $direction == "left" {
+        border-bottom: ($height * 1px) solid transparent;
+        border-right: ($width * 1px) solid $color;
+        border-top: ($height * 1px) solid transparent;
+    } @else if $direction == "right" {
+        border-bottom: ($height * 1px) solid transparent;
+        border-left : ($width * 1px) solid $color;
+        border-top: ($height * 1px) solid transparent;
+    } @else if $direction == "up" {
+        border-bottom: ($height * 1px) solid $color;
+        border-left: ($width * 1px) solid transparent;
+        border-right: ($width * 1px) solid transparent;
+    } @else if $direction == "down" {
+        border-right: ($width * 1px) solid transparent;
+        border-left: ($width * 1px) solid transparent;
+        border-top: ($height * 1px) solid $color;
+    }
+
+    content: "";
+    height: 0;
+    position: absolute;
+    width: 0;
 }
