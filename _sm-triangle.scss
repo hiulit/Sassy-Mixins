@@ -7,8 +7,8 @@
         $height: $sizes;
         $width: $sizes;
     } @else {
-        $height: nth($length, 2);
-        $width: nth($length, 1);
+        $height: nth($sizes, 2);
+        $width: nth($sizes, 1);
     }
 
     @if $darken == true {
